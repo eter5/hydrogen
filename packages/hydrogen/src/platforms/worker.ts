@@ -1,4 +1,4 @@
-import {handleRequest, indexTemplate} from './virtual';
+import {handleRequest, indexTemplate, isAsset, assetBasePath} from './virtual';
 
 declare global {
   // eslint-disable-next-line no-var
@@ -14,6 +14,11 @@ export default {
     env: unknown,
     context: {waitUntil: (promise: Promise<any>) => void}
   ) {
+    const url = new URL(request.url);
+    if (assetBasePath && isAsset(url.pathname)) {
+      return fetch(request.url.replace(url.origin, assetBasePath));
+    }
+
     if (!globalThis.Oxygen) {
       globalThis.Oxygen = {env};
     }

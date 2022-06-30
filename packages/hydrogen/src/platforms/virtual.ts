@@ -20,4 +20,6 @@ export const isAsset = (pathname = '') =>
 export const relativeClientBuildPath =
   '__HYDROGEN_RELATIVE_CLIENT_BUILD__' as string;
 
+export const assetBasePath = '__HYDROGEN_ASSET_BASE_URL__' as string;
+
 throw new Error('This file must be overwritten in a Vite plugin');

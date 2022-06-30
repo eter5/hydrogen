@@ -95,6 +95,10 @@ export default () => {
 
         ms.replace("\\['__HYDROGEN_ASSETS__'\\]", JSON.stringify(files));
         ms.replace('__HYDROGEN_ASSETS_DIR__', config.build.assetsDir);
+        ms.replace(
+          '__HYDROGEN_ASSET_BASE_URL__',
+          (process.env.HYDROGEN_ASSET_BASE_URL || '').replace(/\/$/, '')
+        );
 
         // Remove the poison pill
         ms.replace('throw', '//');
